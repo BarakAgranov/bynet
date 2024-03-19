@@ -9,6 +9,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                checkout([$class: 'GitSCM', 
+                branches: [[name: '*/main']],
                 git url: 'https://github.com/BarakAgranov/bynet.git'
             }
         }
