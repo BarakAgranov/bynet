@@ -28,11 +28,11 @@ pipeline {
                 script {
                     // Login to DockerHub
                     docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
-                        // Push the image
-                        // docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
-                        // // Also push the latest tag if needed
-                        // docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push("latest")
-                        sh "docker-compose push"
+                        Push the image
+                        docker.image("github-to-dockerhub_todo-backend:latest").push()
+                        // Also push the latest tag if needed
+                        docker.image("github-to-dockerhub_todo-frontend:latest").push
+                        
                     }
                 }
             }
