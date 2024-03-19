@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    environment {
+        // Define the version number as Jenkins' build number
+        VERSION = "1.0.${env.BUILD_NUMBER}"
+    }
 
     stages {
         stage('Checkout') {
@@ -12,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker images using Docker Compose
-                    sh "docker-compose build"
+                    sh "docker-compose build --build-arg VERSION=${VERSION}"
                 }
             }
         }
@@ -22,6 +27,12 @@ pipeline {
                 script {
                     // Login to DockerHub
                     sh "docker login --username agranov9 --password IdkfaIddqd9088!"
+                    
+                    // Tag the built image with the version before pushing
+                    sh "docker tag agranov9/backend-todo:latest agranov9/backend-todo:${VERSION}"
+                    
+                    // Tag the built image with the version before pushing
+                    sh "docker tag agranov9/frontend-todo:latest agranov9/frontend-todo:${VERSION}"
                     
                     // Push the images using Docker Compose
                     sh "docker-compose push"
