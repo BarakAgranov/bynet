@@ -31,7 +31,10 @@ pipeline {
                     docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
                         //Push the image
                         docker.image("backend-todo:latest").push()
-                        // Also push the latest tag if needed
+                        
+                    }
+                    docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
+                        //Push the image
                         docker.image("frontend-todo:latest").push
                         
                     }
