@@ -10,6 +10,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    image: github-to-dockerhub_todo-backend:latest
     ports:
       - "8000:8000"
     depends_on:
@@ -19,5 +20,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: github-to-dockerhub_todo-frontend:latest
     ports:
       - "5173:5173"
