@@ -38,12 +38,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up Docker images to prevent the agent from running out of disk space
-            sh "docker rmi "github-to-dockerhub_todo-backend:latest""
-            sh "docker rmi "github-to-dockerhub_todo-frontend:latest""
-        }
-    }
 }
