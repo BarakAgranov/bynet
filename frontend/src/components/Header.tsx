@@ -21,7 +21,7 @@ const Header: React.FC = () => {
     >
       <div className="flex mx-auto items-center gap-4">
         <MdOutlineTaskAlt size={28} />
-        <h1 className="text-3xl font-bold dark:text-white ">Todo</h1>
+        <h1 className="text-3xl font-bold dark:text-white ">ניהול משימות</h1>
       </div>
 
       <button
