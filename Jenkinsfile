@@ -26,6 +26,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    sh "docker logout"
                     // Login to DockerHub
                     docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
                         //Push the image
