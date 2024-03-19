@@ -9,7 +9,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
                 git url: 'https://github.com/BarakAgranov/bynet.git'
             }
         }
