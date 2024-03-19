@@ -25,8 +25,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
                     // Login to DockerHub
-                    sh "docker login --username agranov9 --password IdkfaIddqd9088!"
                     
                     // Tag the built image with the version before pushing
                     sh "docker tag agranov9/backend-todo:latest agranov9/backend-todo:${VERSION}"
@@ -39,6 +39,7 @@ pipeline {
                     
                     // No need to logout here, but if you want to ensure you're logged out at the end:
                     sh "docker logout"
+                    }
                 }
             }
         }
