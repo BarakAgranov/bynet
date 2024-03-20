@@ -54,7 +54,8 @@ pipeline {
             steps {
                 script {
                     withCredentials([file(credentialsId: 'kubeconf', variable: 'KUBECONFIG')]) {
-                       sudo sh 'kubectl apply -f ./staging/'
+                        sh 'whoami'
+                        sh 'kubectl apply -f ./staging/'
                         
                     }
                 }
