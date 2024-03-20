@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker images using Docker Compose
-                    sh "docker-compose build --build-arg VERSION=${VERSION}"
+                    sh "docker compose build --build-arg VERSION=${VERSION}"
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
                     sh "docker tag agranov9/frontend-todo:latest agranov9/frontend-todo:${VERSION}"
                     
                     // Push the images using Docker Compose
-                    sh "docker-compose push"
+                    sh "docker compose push"
                     
                     // No need to logout here, but if you want to ensure you're logged out at the end:
                     sh "docker logout"
