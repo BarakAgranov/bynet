@@ -43,5 +43,22 @@ pipeline {
                 }
             }
         }
+        stage('Checkout Kubernetes Manifests') {
+            steps {
+                git credentialsId: 'b87edbd6-746f-42b5-ba00-620c08622835', url: 'https://github.com/BarakAgranov/kubernetes-manifests.git'
+                sh 'ls -lah'
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: 'staging_kubeconfig', variable: 'KUBECONFIG')]) {
+                        sh 'kubectl apply -f ./staging/'
+                        
+                    }
+                }
+            }
+        }
     }
 }
