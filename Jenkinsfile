@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker images using Docker Composee
+                    // Build Docker images using Docker Compose
                     sh "docker compose build --build-arg VERSION=${VERSION}"
                 }
             }
