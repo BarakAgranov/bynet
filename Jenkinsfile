@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([file(credentialsId: 'kubecon', variable: 'KUBECONFIG')]) {
-                        sh 'kubectl apply -f ./staging/'
+                        sh 'sudo kubectl apply -f ./staging/'
                         
                     }
                 }
