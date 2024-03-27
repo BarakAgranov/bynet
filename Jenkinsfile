@@ -29,9 +29,9 @@ pipeline {
                     docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
                     
                     
-                    sh "docker tag agranov9/backend-todo:latest agranov9/backend-todo:${VERSION}"
+                    sh "docker tag agranov9/backend-todo:latest agranov9/backend-todo:latest"
                     
-                    sh "docker tag agranov9/frontend-todo:latest agranov9/frontend-todo:${VERSION}"
+                    sh "docker tag agranov9/frontend-todo:latest agranov9/frontend-todo:latest"
                     
                     sh "docker compose push"
                     
