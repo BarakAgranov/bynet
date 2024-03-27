@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker images using Docker Compose
-                    sh "docker compose build --no-cache --build-arg VERSION=${VERSION}"
+                    sh "docker compose build --build --build-arg VERSION=${VERSION}"
                 }
             }
         }
