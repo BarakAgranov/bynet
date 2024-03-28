@@ -27,7 +27,9 @@ pipeline {
                 script {
                     // Login to DockerHub
                     docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
-                    
+
+                    env.BACKEND_VERSION = "${VERSION}"
+                    env.FRONTEND_VERSION = "${VERSION}"
                     
                     sh "docker tag agranov9/backend-todo:latest agranov9/backend-todo:${VERSION}"
                     
