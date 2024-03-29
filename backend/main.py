@@ -27,7 +27,7 @@ async def create_todo(todo: TodoCreate):
 
 @app.get("/todo/", response_model=List[Todo])
 async def get_todos():
-    logging.info("matfune")
+    logging.info("matfuneasdasdasasdsad")
     todos = await database.get_todos()
     if todos is None:
         raise HTTPException(status_code=404, detail="Todos not found")
