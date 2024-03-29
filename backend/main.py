@@ -4,6 +4,7 @@ from typing import List
 
 from model import Todo, TodoCreate, TodoUpdate
 import database
+import logging
 
 app = FastAPI(title='Todo')
 
@@ -15,6 +16,8 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
+logging.basicConfig(filename="/var/log/app.log", level=logging.INFO)
+logging.info("server started")
 
 @app.post("/todo/", response_model=Todo)
 async def create_todo(todo: TodoCreate):
@@ -24,6 +27,7 @@ async def create_todo(todo: TodoCreate):
 
 @app.get("/todo/", response_model=List[Todo])
 async def get_todos():
+    logging.info("matfune")
     todos = await database.get_todos()
     if todos is None:
         raise HTTPException(status_code=404, detail="Todos not found")
