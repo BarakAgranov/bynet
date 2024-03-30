@@ -16,7 +16,6 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker system prune --volumes"
 
                     // Build Docker images using Docker Compose
                     sh "docker compose build --no-cache --build-arg VERSION=${VERSION}"
