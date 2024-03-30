@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git credentialsId: '1b1573bd-4499-4083-81a8-9baa677de4a8', url: 'https://github.com/BarakAgranov/bynet.git'
-                sh 'git rev-parse HEAD'
+                
             }
         }
 
@@ -20,8 +20,7 @@ pipeline {
 
                     // Build Docker images using Docker Compose
                     sh "docker compose build --no-cache --build-arg VERSION=${VERSION}"
-                    sh "docker pull agranov9/backend-todo:latest"
-                    sh "docker pull agranov9/frontend-todo:latest"
+                    
                 }
             }
         }
@@ -41,8 +40,9 @@ pipeline {
                     
                     sh "docker push agranov9/backend-todo:${VERSION}"
                     sh "docker push agranov9/frontend-todo:${VERSION}"
-                    
-                    sh "docker logout"
+
+                    sh "docker pull agranov9/backend-todo:latest"
+                    sh "docker pull agranov9/frontend-todo:latest"
                     }
                 }
             }
