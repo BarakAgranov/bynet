@@ -1,8 +1,19 @@
 FROM ubuntu:latest
 
 # Install Python, pip, MongoDB, and other dependencies
+# Install dependencies, Python, pip, and software-properties-common (to add new repository)
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip mongodb && \
+    apt-get install -y python3 python3-pip software-properties-common && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Add the MongoDB 5.0 repository
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add - && \
+    echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+
+# Install MongoDB
+RUN apt-get update && \
+    apt-get install -y mongodb-org && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
