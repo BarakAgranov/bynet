@@ -20,6 +20,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      agranov9/frontend-todo:${VERSION}
+      image: agranov9/frontend-todo:${VERSION}
     ports:
       - "5173:5173"
