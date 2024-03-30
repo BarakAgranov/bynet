@@ -18,7 +18,7 @@ pipeline {
                 script {
 
                     // Build Docker images using Docker Compose
-                    sh "docker compose build -t --build-arg VERSION=${VERSION}"
+                    sh "docker compose build --build-arg VERSION=${VERSION}"
                 }
             }
         }
