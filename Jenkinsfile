@@ -20,6 +20,8 @@ pipeline {
 
                     // Build Docker images using Docker Compose
                     sh "docker compose build --no-cache --build-arg VERSION=${VERSION}"
+                    sh "docker pull agranov9/backend-todo:latest"
+                    sh "docker pull agranov9/frontend-todo:latest"
                 }
             }
         }
