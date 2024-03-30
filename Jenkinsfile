@@ -73,5 +73,6 @@ pipeline {
                     patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
                                [pattern: '.propsfile', type: 'EXCLUDE']])
         }
+        }
     }
 }
