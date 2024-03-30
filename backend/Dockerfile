@@ -7,7 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV MONGO_URL=mongodb://10.97.240.82:27017
+ENV MONGO_URL=mongodb://todo-mongo:27017
 ENV DATABASE_NAME=todo_app
 ENV COLLECTION_NAME=todo_items
 
