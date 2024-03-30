@@ -33,13 +33,15 @@ pipeline {
 
                     env.BACKEND_VERSION = "${VERSION}"
                     env.FRONTEND_VERSION = "${VERSION}"
+
+                    sh "docker push agranov9/backend-todo:${VERSION}"
+                    sh "docker push agranov9/frontend-todo:${VERSION}"
                     
                     sh "docker tag agranov9/backend-todo:latest agranov9/backend-todo:${VERSION}"
                     
                     sh "docker tag agranov9/frontend-todo:latest agranov9/frontend-todo:${VERSION}"
                     
-                    sh "docker push agranov9/backend-todo:${VERSION}"
-                    sh "docker push agranov9/frontend-todo:${VERSION}"
+                    
 
                     }
                 }
