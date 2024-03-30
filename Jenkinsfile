@@ -39,8 +39,8 @@ pipeline {
                     
                     sh "docker tag docker.io/agranov9/frontend-todo:latest docker.io/agranov9/frontend-todo:${VERSION}"
 
-                    sh "docker push docker.io/agranov9/backend-todo:${VERSION}"
-                    sh "docker push docker.io/agranov9/frontend-todo:${VERSION}"
+                    sh "docker push docker.io/agranov9/backend-todo:latest"
+                    sh "docker push docker.io/agranov9/frontend-todo:latest"
 
                     }
                 }
