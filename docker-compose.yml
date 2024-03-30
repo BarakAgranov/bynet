@@ -9,8 +9,6 @@ services:
     image: agranov9/backend-todo:${VERSION}
     ports:
       - "8000:8000"
-    depends_on:
-      - todo-mongo
 
   todo-frontend:
     build:
