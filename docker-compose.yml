@@ -10,6 +10,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      image: agranov9/backend-todo:${VERSION}
     ports:
       - "8000:8000"
     depends_on:
@@ -19,5 +20,6 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      agranov9/frontend-todo:${VERSION}
     ports:
       - "5173:5173"
