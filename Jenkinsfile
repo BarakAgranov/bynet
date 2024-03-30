@@ -41,8 +41,6 @@ pipeline {
                     sh "docker push agranov9/backend-todo:${VERSION}"
                     sh "docker push agranov9/frontend-todo:${VERSION}"
 
-                    sh "docker pull agranov9/backend-todo:latest"
-                    sh "docker pull agranov9/frontend-todo:latest"
                     }
                 }
             }
