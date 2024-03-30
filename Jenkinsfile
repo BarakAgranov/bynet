@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build Docker images using Docker Compose
-                    sh "docker-compose build --build-arg VERSION=${VERSION}"
+                    sh "docker compose build --no-cache --build-arg VERSION=${VERSION}"
                 }
             }
         }
@@ -25,20 +25,36 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
                     // Login to DockerHub
+                    docker.withRegistry('https://index.docker.io/v1/', '9de0d131-8c0d-4e79-acc9-0fbfa3220f95') {
+
+                    env.BACKEND_VERSION = "${VERSION}"
+                    env.FRONTEND_VERSION = "${VERSION}"
                     
-                    // Tag the built image with the version before pushing
                     sh "docker tag agranov9/backend-todo:latest agranov9/backend-todo:${VERSION}"
                     
-                    // Tag the built image with the version before pushing
                     sh "docker tag agranov9/frontend-todo:latest agranov9/frontend-todo:${VERSION}"
                     
-                    // Push the images using Docker Compose
-                    sh "docker-compose push"
+                    sh "docker compose push"
                     
-                    // No need to logout here, but if you want to ensure you're logged out at the end:
                     sh "docker logout"
+                    }
+                }
+            }
+        }
+        stage('Checkout Kubernetes Manifests') {
+            steps {
+                git credentialsId: 'b87edbd6-746f-42b5-ba00-620c08622835', url: 'https://github.com/BarakAgranov/kubernetes-manifests.git'
+                sh 'ls -lah'
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: 'kubecon', variable: 'KUBECONFIG')]) {
+                        sh 'kubectl apply -f ./staging/'
+                        
                     }
                 }
             }
