@@ -10,6 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git credentialsId: '1b1573bd-4499-4083-81a8-9baa677de4a8', url: 'https://github.com/BarakAgranov/bynet.git'
+                sh 'git rev-parse HEAD'
             }
         }
 
