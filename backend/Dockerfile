@@ -1,8 +1,10 @@
-# Use a base image that includes Python
-FROM python:3.11-alpine
+FROM ubuntu:latest
 
-# Install MongoDB
-RUN apk add --no-cache mongodb
+# Install Python, pip, MongoDB, and other dependencies
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip mongodb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Set up working directory
 WORKDIR /app
