@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL: string = "http://localhost:8000/todo";
+const baseURL: string = "http://backend-service/todo";
 
 export const fetchTaskListFromDB = async () => {
   try {
