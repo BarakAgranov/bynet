@@ -4,9 +4,13 @@ from typing import List
 
 from model import Todo, TodoCreate, TodoUpdate
 import database
+import logging
 
 app = FastAPI(title='Todo')
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+logger.debug('before get')
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,9 +19,11 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
+logger.debug('before get')
 
 @app.post("/todo/", response_model=Todo)
 async def create_todo(todo: TodoCreate):
+    logger.debug('inside get')
     created_todo = await database.create_todo(todo)
     return created_todo
 
